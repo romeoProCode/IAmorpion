@@ -63,20 +63,16 @@ boardTest= [["X","_","_"],
 # une fontion qui dit si on a gané ou non et qui a gagné, et une fonction
 # qui permet aux joueurs de plaçer leurs jetons.
 nombreDeTours=0
-if (False):
     
-    while check_win(board) == False:
+while check_win(board) == False:
         nombreDeTours=nombreDeTours+1
         print(nombreDeTours)
         affichetab(board)
-        board=jouer(board,"X")
+        jouer_automatiquement(board,"X")
         affichetab(board)
-        board=jouer(board,"O")
+        jouer_automatiquement(board,"O")
         
-jouer_automatiquement(boardTest,"X")
-affichetab(boardTest)
-        
-# dev IA
+
 
     
     
