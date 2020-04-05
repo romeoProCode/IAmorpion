@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Mar 28 15:08:35 2020
+
+@author: romeobassobrusa
+"""
+
+#partie fonction
+def check_win(t):
+    symbol=["X","O"]   
+    for r in symbol:
+#on teste toutes les lignes
+        for i in range(0,3):
+            if t[i][0]== r and t[i][1]==r and t[i][2]==r:
+                print("joueur ",r," a gagné la partie (lignes)")
+                return True
+#on teste toutes les colones
+        for i in range(0,3):
+            if t[0][i]==r and t[1][i]==r and t[2][i]==r:
+                print("joueur", r," a gagné la partie(colonnes)")
+                return True
+#@Todo faire les diagonales
+        return False
+
+def jouer(t,symbol):
+    colonne=int(input("joueur"+symbol+"à toi de jouer, choisir une colonne(0,1,2)"))
+    ligne=int(input("joueur"+symbol+"à toi de jouer, choisir une ligne(0,1,2)"))
+    t[colonne][ligne]=symbol
+    return t
+
+
+def affichetab(T):
+    for i in range(0,3):
+        print(T[0][i]+"|"+T[1][i]+"|"+T[2][i])
+
+
+
+
+#partie variable
+
+board=[["_","_","_"],
+       ["_","_","_"],
+       ["_","_","_"]]
+boardTest= [["X","_","_"],
+            ["O","_","_"],
+            ["X","_","_"]]
+            
+#les jetons possiblement utilisables sont des croix X et des ronds O (c'est un
+# O(lettre)))
+
+#while s'arrête lorsqu il y une fontion de condition de victoire qui renvoie 
+#True. A chaque tour de boucle deux tour de joués (joueur 1 et joueur 2). 
+
+# une fontion qui dit si on a gané ou non et qui a gagné, et une fonction
+# qui permet aux joueurs de plaçer leurs jetons.
+nombreDeTours=0
+while check_win(board) == False:
+    nombreDeTours=nombreDeTours+1
+    print(nombreDeTours)
+    affichetab(board)
+    board=jouer(board,"X")
+    affichetab(board)
+    board=jouer(board,"O")
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
