@@ -64,7 +64,7 @@ while check_win(board) == False:
     board=jouer(board,"O")
     
     
-    
+# dev IA   
     
     
     
