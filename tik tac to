@@ -5,7 +5,7 @@ Created on Sat Mar 28 15:08:35 2020
 
 @author: romeobassobrusa
 """
-
+import random
 #partie fonction
 def check_win(t):
     symbol=["X","O"]   
@@ -29,6 +29,14 @@ def jouer(t,symbol):
     t[colonne][ligne]=symbol
     return t
 
+def jouer_automatiquement(t,symbol):
+    colonne= random.randint(0,2)
+    ligne= random.randint(0,2)
+    while t[colonne][ligne]=="X"or t[colonne][ligne]=="O":
+        colonne= random.randint(0,2)
+        ligne= random.randint(0,2)
+    t[colonne][ligne]=symbol
+    return t
 
 def affichetab(T):
     for i in range(0,3):
@@ -55,16 +63,21 @@ boardTest= [["X","_","_"],
 # une fontion qui dit si on a gané ou non et qui a gagné, et une fonction
 # qui permet aux joueurs de plaçer leurs jetons.
 nombreDeTours=0
-while check_win(board) == False:
-    nombreDeTours=nombreDeTours+1
-    print(nombreDeTours)
-    affichetab(board)
-    board=jouer(board,"X")
-    affichetab(board)
-    board=jouer(board,"O")
+if (False):
     
-    
-# dev IA   
+    while check_win(board) == False:
+        nombreDeTours=nombreDeTours+1
+        print(nombreDeTours)
+        affichetab(board)
+        board=jouer(board,"X")
+        affichetab(board)
+        board=jouer(board,"O")
+        
+jouer_automatiquement(boardTest,"X")
+affichetab(boardTest)
+        
+# dev IA
+
     
     
     
