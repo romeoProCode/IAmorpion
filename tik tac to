@@ -90,11 +90,17 @@ def play():
             stockage.recordBoard[nombreDeTours-1]=board
             print (check_win_automatiquement(board,symbol))
             if check_win_automatiquement(board,symbol)==1 or check_win_automatiquement(board,symbol)==0:
+                print("victoire ou nul")
                 affichetab(board)
                 stockage.gagner = check_win_automatiquement(board,symbol)
                 stockage.nombreDeTours=nombreDeTours
                 return stockage
-
+     
+    print("victoire ou nul")
+    affichetab(board)
+    stockage.gagner = check_win_automatiquement(board,symbol)
+    stockage.nombreDeTours=nombreDeTours
+    return stockage
 
 #on joue
 print("execution du programme")
