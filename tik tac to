@@ -20,8 +20,28 @@ def check_win(t):
             if t[0][i]==r and t[1][i]==r and t[2][i]==r:
                 print("joueur", r," a gagné la partie(colonnes)")
                 return True
-#@Todo faire les diagonales
-        return False
+
+def check_win_automatiquement(t,symbol):
+#on teste toutes les lignes
+   r=symbol
+   for i in range(0,3):
+      if t[i][0]== r and t[i][1]==r and t[i][2]==r:
+          print("joueur ",r," a gagné la partie (lignes)")
+          return 1
+#on teste toutes les colones
+   for i in range(0,3):
+      if t[0][i]==r and t[1][i]==r and t[2][i]==r:
+         print("joueur", r," a gagné la partie(colonnes)")
+         return 1
+   c=0    #compte les tirets du bas, on teste le match nul 
+   for i in range(0,3):
+       for y in range(0,3):
+         if t[i][y]== "_":
+             c=c+1
+   if c==0:
+       print("Il y a match nul")
+       return 0
+   return -2
 
 def jouer(t,symbol):
     colonne=int(input("joueur"+symbol+"à toi de jouer, choisir une colonne(0,1,2)"))
@@ -43,17 +63,27 @@ def affichetab(T):
         print(T[0][i]+"|"+T[1][i]+"|"+T[2][i])
 
 
+def play():
+    board=[["_","_","_"],
+           ["_","_","_"],
+           ["_","_","_"]]
+    
+    
+    
+    nombreDeTours=0  
+    while check_win_automatiquement(board,"X") == -2 and check_win_automatiquement(board,"O")==-2:     
+        symbol=["X","O"]   
+        for r in symbol:
+            nombreDeTours=nombreDeTours+1
+            print(nombreDeTours)
+            affichetab(board)
+            jouer_automatiquement(board,r)
+            print (check_win_automatiquement(board,symbol))
+            if check_win_automatiquement(board,symbol)==1 or check_win_automatiquement(board,symbol)==0:
+                affichetab(board)
+                return check_win_automatiquement(board,symbol)
 
 
-#partie variable
-
-board=[["_","_","_"],
-       ["_","_","_"],
-       ["_","_","_"]]
-boardTest= [["X","_","_"],
-            ["O","_","_"],
-            ["X","_","_"]]
-            
 #les jetons possiblement utilisables sont des croix X et des ronds O (c'est un
 # O(lettre)))
 
@@ -62,18 +92,11 @@ boardTest= [["X","_","_"],
 
 # une fontion qui dit si on a gané ou non et qui a gagné, et une fonction
 # qui permet aux joueurs de plaçer leurs jetons.
-nombreDeTours=0
-    
-while check_win(board) == False:
-        nombreDeTours=nombreDeTours+1
-        print(nombreDeTours)
-        affichetab(board)
-        jouer_automatiquement(board,"X")
-        affichetab(board)
-        jouer_automatiquement(board,"O")
-        
 
 
+play()
+play()
+play()
     
     
     
