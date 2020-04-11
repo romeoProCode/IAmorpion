@@ -5,6 +5,15 @@ Created on Sat Mar 28 15:08:35 2020
 
 @author: romeobassobrusa
 """
+board=[["_","_","_"],
+           ["_","_","_"],
+           ["_","_","_"]]
+class Placard:
+    gagner=-2
+    recordBoard=[board,board,board,board,board,board,board,board,board,board]
+    nombreDeTours=0
+        
+
 import random
 #partie fonction
 def check_win(t):
@@ -67,7 +76,7 @@ def play():
     board=[["_","_","_"],
            ["_","_","_"],
            ["_","_","_"]]
-    
+    stockage= Placard()
     
     
     nombreDeTours=0  
@@ -78,12 +87,20 @@ def play():
             print(nombreDeTours)
             affichetab(board)
             jouer_automatiquement(board,r)
+            stockage.recordBoard[nombreDeTours-1]=board
             print (check_win_automatiquement(board,symbol))
             if check_win_automatiquement(board,symbol)==1 or check_win_automatiquement(board,symbol)==0:
                 affichetab(board)
-                return check_win_automatiquement(board,symbol)
+                stockage.gagner = check_win_automatiquement(board,symbol)
+                stockage.nombreDeTours=nombreDeTours
+                return stockage
 
 
+#on joue
+print("execution du programme")
+record=play()
+print("programme exsecuté")
+print(record.gagner)
 #les jetons possiblement utilisables sont des croix X et des ronds O (c'est un
 # O(lettre)))
 
@@ -92,15 +109,8 @@ def play():
 
 # une fontion qui dit si on a gané ou non et qui a gagné, et une fonction
 # qui permet aux joueurs de plaçer leurs jetons.
-
-
-play()
-play()
-play()
-    
-    
-    
-    
+print(record.nombreDeTours)
+affichetab(record.recordBoard[1])      
     
     
     
